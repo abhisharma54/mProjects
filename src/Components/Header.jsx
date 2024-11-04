@@ -10,7 +10,7 @@ import { lightMode, darkMode } from "../store/themeModeSlice";
 import { useSelector, useDispatch } from "react-redux";
 
 function Header() {
-  const [menu, setMenu] = useState(true);
+  const [menu, setMenu] = useState(false);
   const themeData = useSelector((state) => state.mode);
   const dispatch = useDispatch();
 
@@ -53,18 +53,19 @@ function Header() {
           <header
             className={
               menu
-                ? "flex flex-col items-center gap-10 bg-zinc-100 dark:bg-zinc-900 px-10 shadow-2xl py-2 rounded-full border-[1px] border-[#202020] dark:border-yellow-400 min-[550px]:flex-row max-[550px]:gap-1 max-[550px]:w-full"
+                ? "flex flex-col items-center gap-10 bg-zinc-100 dark:bg-zinc-900 px-10 shadow-2xl py-2 rounded-full border-[1px] border-[#202020] dark:border-yellow-400 min-[550px]:flex-row max-[550px]:gap-1 max-[550px]:w-full max-[550px]:h-[40vh] max-[550px]:rounded-none max-[550px]:border-none max-[550px]:absolute max-[550px]:top-0"
                 : "flex items-center gap-10 bg-zinc-100 dark:bg-zinc-900 px-10 shadow-2xl py-2 rounded-full border-[1px] border-[#202020] dark:border-yellow-400 max-[550px]:hidden"
             }
           >
-            <h1 className="text-2xl font-bold text-[#202020] dark:text-yellow-400 mb-1">
+            <h1 className="text-2xl font-bold text-[#202020] dark:text-yellow-400 mb-1 max-[550px]:pt-10">
               mProjects
             </h1>
-            <ul className="flex gap-4">
+            <ul className="flex gap-4 max-[550px]:flex-col max-[550px]:gap-10 max-[550px]:py-10">
               {navItem.map((link, index) => (
                 <li key={index}>
                   <NavLink
                     to={link.path}
+                    onClick={() => setMenu(prev => !prev)}
                     className={({ isActive }) =>
                       `${
                         isActive

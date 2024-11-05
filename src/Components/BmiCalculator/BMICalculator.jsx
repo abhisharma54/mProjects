@@ -4,8 +4,9 @@ function BMICalculator() {
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
   const [heightConvert, setHeightConvert] = useState("");
+  const [loading, setLoading] = useState('')
   const [error, setError] = useState("");
-  const [bmi, setBmi] = useState("");
+  const [result, setResult] = useState("");
   const [heightInCm, setHeightInCm] = useState("");
   const [heightConvertErr, setHeightConvertErr] = useState("");
 
@@ -19,13 +20,13 @@ function BMICalculator() {
     } else {
       const bmiValue = ((weight / (height * height)) * 10000).toFixed(2);
       if (bmiValue < 18.5) {
-        setBmi(`Underweight: ${bmiValue}`);
+        setResult(`Underweight: ${bmiValue}`);
       } else if (18.5 < bmiValue < 24.9) {
-        setBmi(`Normal Weight: ${bmiValue}`);
+        setResult(`Normal Weight: ${bmiValue}`);
       } else if (25 < bmiValue < 29.9) {
-        setBmi(`Overweight: ${bmiValue}`);
+        setResult(`Overweight: ${bmiValue}`);
       } else {
-        setBmi(`Obesity: ${bmiValue}`);
+        setResult(`Obesity: ${bmiValue}`);
       }
     }
   };
@@ -87,17 +88,33 @@ function BMICalculator() {
             <input
               className="w-full px-3 py-2 border-[1px] text-black border-[#202020] bg-zinc-100 dark:bg-black dark:text-white dark:border-yellow-400 focus:outline-none"
               type="text"
-              placeholder="Kg"
+              placeholder="kg"
               id="weight"
               value={weight}
               onChange={(e) => setWeight(e.target.value)}
             />
           </div>
+          <div className="flex items-center gap-4">
+          <p
+            className="text-lg font-medium text-[#202020] dark:text-white"
+            htmlFor="result"
+            >
+            Result :
+          </p>
+          <p className="text-lg font-medium text-[#202020] border-b-[1px] border-b-zinc-600 dark:text-yellow-400 dark:border-yellow-400">
+            {loading ? (
+              <span className="font-normal text-[#202020] dark:text-white">
+                converting...
+              </span>
+            ) : result ? (
+              result
+            ) : <div className="w-20 pt-3 border-[0px] border-b-[#202020]"></div>}
+          </p>
+        </div>
           <button className="text-xl font-semibold px-3 py-2 text-[#202020] bg-zinc-200 border-[1px] border-[#202020] transition duration-150 ease-in hover:bg-black hover:text-white dark:hover:text-white dark:hover:bg-black dark:text-yellow-400 dark:bg-transparent dark:border-yellow-400">
             Calculate
           </button>
-          {error && <p className="text-lg text-[#202020] dark:text-white">{error}</p>}
-          {bmi && <p className="text-lg font-semibold text-[#202020] dark:text-yellow-400">{bmi}</p>}
+            {error && <p className="text-lg text-[#202020] dark:text-white">{error}</p>}
         </form>
 
         <div className="flex flex-col gap-4 mt-4 p-5 shadow-xl border-[1px] bg-zinc-100 dark:bg-[#202020] border-[#202020] dark:border-yellow-400">
@@ -125,8 +142,24 @@ function BMICalculator() {
               Convert
             </button>
           </div>
-          {heightConvertErr && <p className="text-lg text-[#202020] dark:text-white">{heightConvertErr}</p>}
-          {heightInCm && <p className="text-lg font-semibold text-[#202020] dark:text-white">{heightInCm} cm</p>}
+          <div className="flex items-center gap-4">
+          <p
+            className="text-lg font-medium text-[#202020] dark:text-white"
+            htmlFor="result"
+          >
+            Result :
+          </p>
+          <p className="text-lg font-medium text-[#202020] border-b-[1px] border-b-zinc-600 dark:text-yellow-400 dark:border-yellow-400">
+            {loading ? (
+              <span className="font-normal text-[#202020] dark:text-white">
+                converting...
+              </span>
+            ) : heightInCm ? (
+              heightInCm
+            ) : <div className="w-20 pt-3 border-[0px] border-b-[#202020]"></div>}
+          </p>
+        </div>
+            {heightConvertErr && <p className="text-lg text-[#202020] dark:text-white">{heightConvertErr}</p>}
         </div>
       </div>
     </div>

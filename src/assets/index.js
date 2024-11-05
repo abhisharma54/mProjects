@@ -13,6 +13,9 @@ import menuLightIcon from './images/menu-light.png'
 import menuDarkIcon from './images/menu-dark.png'
 import arrowLightIcon from './images/arrow-light.png'
 import arrowDarkIcon from './images/arrow-dark.png'
+import logo from './images/mProjects-logo.jpg'
+import listAiLight from './images/list-light.png'
+import listAiDark from './images/list-dark.png'
 
 export {
     bmiImg,
@@ -30,4 +33,7 @@ export {
     menuDarkIcon,
     arrowLightIcon,
     arrowDarkIcon,
+    logo, 
+    listAiLight,
+    listAiDark
 }

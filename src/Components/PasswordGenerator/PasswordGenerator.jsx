@@ -24,7 +24,7 @@ function PasswordGenerator() {
         <div
           className="flex flex-col gap-4 mt-4 p-5 shadow-2xl border-[1px] border-[#202020] dark:border-yellow-400"
         >
-          <h1 className="text-3xl font-semibold text-[#202020] dark:text-yellow-400 mb-4">
+          <h1 className="text-3xl text-nowrap font-semibold text-[#202020] dark:text-yellow-400 mb-4 max-[550px]:text-2xl">
             PASSWORD GENERATOR
           </h1>
             <input

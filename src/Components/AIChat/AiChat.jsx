@@ -49,7 +49,7 @@ function AiChat() {
             ))
           ) : loading ? (
             <div className="flex gap-2">
-            <img className="w-[20px]" src={themeData ? listAiLight : listAiDark} alt="listAi-icon" />
+            <img className="w-[20px]" src={themeData === 'light' ? listAiLight : listAiDark} alt="listAi-icon" />
             <p className="text-[#202020] dark:text-yellow-400">wait...</p>
             </div>
           ) : (

@@ -25,7 +25,7 @@ function AiChat() {
       setError("");
       setPrompt("");
       const result = await model.generateContent(prompt);
-      const res = result.response.text().replace(/\*/g, "");
+      const res = result.response.text().replace(/\*/g, "").replace("##", "");
       setData((prev) => [...prev, { message: res }]);
     } catch (error) {
       setError(error);
@@ -38,8 +38,11 @@ function AiChat() {
     <div className="w-full">
       <div className="flex flex-col items-center">
         <div className="w-full flex flex-col gap-4 p-4 mb-4 max-[550px]:px-1">
-          {data.length > 0 ? (
-            data.map((item, index) => (
+          {data?.length === 0 ? (
+            <p className="text-3xl font-bold mt-20 text-[#202020] dark:text-white">
+            How can I help you?
+          </p>
+          ) : (data.map((item, index) => (
               <li
                 key={index}
                 className="text-black text-justify dark:text-white"
@@ -47,15 +50,16 @@ function AiChat() {
                 {item.message}
               </li>
             ))
-          ) : loading ? (
+          )}
+          {loading && (
             <div className="flex gap-2">
-            <img className="w-[20px]" src={themeData === 'light' ? listAiLight : listAiDark} alt="listAi-icon" />
-            <p className="text-[#202020] dark:text-yellow-400">wait...</p>
+              <img
+                className="w-[20px]"
+                src={themeData === "light" ? listAiLight : listAiDark}
+                alt="listAi-icon"
+              />
+              <p className="text-[#202020] dark:text-yellow-400">wait...</p>
             </div>
-          ) : (
-            <p className="text-3xl font-bold mt-20 text-[#202020] dark:text-white">
-              How can I help you?
-            </p>
           )}
           {error && <p className="text-black dark:text-white">{error}</p>}
           <div className="h-[50px]"></div>

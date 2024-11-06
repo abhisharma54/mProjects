@@ -10,7 +10,7 @@ function Contact() {
       <h1 className="text-3xl font-semibold text-[#202020] dark:text-yellow-400">CONNECT</h1>
       <div className="flex flex-col gap-4">
         <Link
-          className="w-full flex gap-4 items-center p-3 border-[1px] bg-zinc-100 transition duration-150 ease-in hover:bg-zinc-200 hover:border-[1px] hover:border-[#202020] hover:shadow-lg dark:bg-transparent dark:border-transparent dark:hover:bg-black dark:hover:border-yellow-400"
+          className="w-full flex gap-4 items-center p-3 border-[1px] bg-zinc-100 transition duration-150 ease-in hover:bg-zinc-200 hover:border-[#202020] hover:shadow-lg dark:bg-zinc-800 dark:border-zinc-700 dark:border-transparent dark:hover:bg-black dark:hover:border-yellow-400"
           target="_blank"
           to={"https://linkedin.com/in/abhishek-sharma-8317751b4"}
         >
@@ -23,7 +23,7 @@ function Contact() {
           <h1 className="text-xl font-semibold text-[#202020] dark:text-white">LinkedIn</h1>
         </Link>
         <Link
-          className="w-full flex gap-4 items-center p-3 border-[1px] bg-zinc-100 transition duration-150 ease-in hover:bg-zinc-200 hover:border-[1px] hover:border-[#202020] hover:shadow-lg dark:bg-transparent dark:border-transparent dark:hover:bg-black dark:hover:border-yellow-400"
+          className="w-full flex gap-4 items-center p-3 border-[1px] bg-zinc-100 transition duration-150 ease-in hover:bg-zinc-200 hover:border-[#202020] hover:shadow-lg dark:bg-zinc-800 dark:border-zinc-700 dark:border-transparent dark:hover:bg-black dark:hover:border-yellow-400"
           target="_blank"
           to={"https://github.com/abhisharma54"}
         >
@@ -36,7 +36,7 @@ function Contact() {
           <h1 className="text-xl font-semibold text-[#202020] dark:text-white">Github</h1>
         </Link>
         <Link
-          className="w-full flex gap-4 items-center p-3 border-[1px] bg-zinc-100 transition duration-150 ease-in hover:bg-zinc-200 hover:border-[1px] hover:border-[#202020] hover:shadow-lg dark:bg-transparent dark:border-transparent dark:hover:bg-black dark:hover:border-yellow-400"
+          className="w-full flex gap-4 items-center p-3 border-[1px] bg-zinc-100 transition duration-150 ease-in hover:bg-zinc-200 hover:border-[#202020] hover:shadow-lg dark:bg-zinc-800 dark:border-zinc-700 dark:border-transparent dark:hover:bg-black dark:hover:border-yellow-400"
           target="_blank"
           to={"mailto:abhisheksharma2920@gmail.com"}
         >

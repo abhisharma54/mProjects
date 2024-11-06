@@ -52,7 +52,7 @@ function Header() {
           <header
             className={
               menu
-                ? "flex flex-col items-center gap-10 bg-zinc-100 dark:bg-zinc-950 px-10 shadow-2xl py-2 rounded-full border-[1px] border-[#202020] dark:border-yellow-400 min-[550px]:flex-row max-[550px]:gap-0 max-[550px]:w-full max-[550px]:h-[400px] max-[550px]:rounded-none max-[550px]:border-none max-[550px]:fixed max-[550px]:top-0"
+                ? "flex flex-col items-center gap-10 bg-zinc-100 dark:bg-zinc-950 px-10 shadow-2xl py-2 rounded-full border-[1px] border-[#202020] dark:border-yellow-400 min-[550px]:flex-row max-[550px]:gap-0 max-[550px]:w-full max-[550px]:h-min max-[550px]:pb-10 max-[550px]:rounded-none max-[550px]:border-none max-[550px]:fixed max-[550px]:top-0"
                 : "flex items-center gap-10 bg-zinc-100 dark:bg-zinc-900 px-10 shadow-2xl py-2 rounded-full border-[1px] border-[#202020] dark:border-yellow-400 max-[550px]:hidden"
             }
           >

@@ -4,7 +4,6 @@ function BMICalculator() {
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
   const [heightConvert, setHeightConvert] = useState("");
-  const [loading, setLoading] = useState('')
   const [error, setError] = useState("");
   const [result, setResult] = useState("");
   const [heightInCm, setHeightInCm] = useState("");
@@ -102,11 +101,7 @@ function BMICalculator() {
             Result :
           </p>
           <p className="text-lg font-medium text-[#202020] border-b-[1px] border-b-zinc-600 dark:text-yellow-400 dark:border-yellow-400">
-            {loading ? (
-              <span className="font-normal text-[#202020] dark:text-white">
-                converting...
-              </span>
-            ) : result ? (
+            {result ? (
               result
             ) : <div className="w-20 pt-3 border-[0px] border-b-[#202020]"></div>}
           </p>
@@ -149,15 +144,11 @@ function BMICalculator() {
           >
             Result :
           </p>
-          <p className="text-lg font-medium text-[#202020] border-b-[1px] border-b-zinc-600 dark:text-yellow-400 dark:border-yellow-400">
-            {loading ? (
-              <span className="font-normal text-[#202020] dark:text-white">
-                converting...
-              </span>
-            ) : heightInCm ? (
-              heightInCm
-            ) : <div className="w-20 pt-3 border-[0px] border-b-[#202020]"></div>}
-          </p>
+            {heightInCm ? (
+              <p className="text-lg font-medium text-[#202020] border-b-[1px] border-b-zinc-600 dark:text-yellow-400 dark:border-yellow-400">
+                {`${heightInCm} cm`}
+              </p>
+            ) : <div className="w-20 pt-3 border-[1px] border-transparent border-b-[#202020] dark:border-b-yellow-400"></div>}
         </div>
             {heightConvertErr && <p className="text-lg text-[#202020] dark:text-white">{heightConvertErr}</p>}
         </div>

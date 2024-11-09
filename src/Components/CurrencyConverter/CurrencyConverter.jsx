@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { Input, Button } from "../index";
 
 function CurrencyConverter() {
   const [currencies, setCurrencies] = useState([]);
@@ -114,21 +115,13 @@ function CurrencyConverter() {
             </select>
           </div>
         </div>
-        <div className="flex items-center gap-4">
-          <label
-            className="text-lg font-medium text-[#202020] dark:text-white"
-            htmlFor="amount"
-          >
-            Amount
-          </label>
-          <input
-            className="w-full px-3 py-2 border-[1px] text-black border-[#202020] bg-zinc-200 dark:bg-black dark:text-white dark:border-yellow-400 focus:outline-none"
+          <Input
+            label="Amount"
             type="number"
             placeholder="enter amount"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
           />
-        </div>
         <div className="flex items-center gap-4">
           <p
             className="text-lg font-medium text-[#202020] dark:text-white"
@@ -146,9 +139,9 @@ function CurrencyConverter() {
             ) : <div className="w-20 pt-3 border-[0px] border-b-[#202020]"></div>}
           </p>
         </div>
-        <button className="text-xl font-semibold px-3 py-2 text-[#202020] bg-zinc-200 border-[1px] border-[#202020] transition duration-150 ease-in hover:bg-black hover:text-white dark:hover:text-white dark:hover:bg-black dark:text-yellow-400 dark:bg-transparent dark:border-yellow-400 max-[550px]:text-lg">
+        <Button>
           {`Convert ${from} to ${to}`}
-        </button>
+        </Button>
       </form>
       {error ? (
         <p className="my-4 text-xl font-semibold text-[#202020] dark:text-yellow-400">

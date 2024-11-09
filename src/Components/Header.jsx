@@ -70,7 +70,7 @@ function Header() {
                         isActive
                           ? "text-orange-500 font-semibold dark:text-yellow-400 "
                           : "text-[#202020] dark:text-white"
-                      } transition duration-150 ease-in max-[550px]:text-xl hover:text-orange-500 hover:border-b-orange-500 dark:hover:text-yellow-400 hover:border-b-[1px] dark:hover:border-b-yellow-40`
+                      } transition duration-150 ease-in max-[550px]:text-xl hover:text-orange-500 hover:border-b-orange-500 dark:hover:text-yellow-400 hover:border-b-[1px] dark:hover:border-b-yellow-400`
                     }
                   >
                     {link.name}

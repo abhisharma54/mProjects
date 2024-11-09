@@ -1,6 +1,6 @@
 import React from 'react'
 import { ProjectCard } from './index'
-import { bmiImg, currencyImg, unitImg, passwordImg, aiChatImg } from '../assets/index'
+import { bmiImg, currencyImg, unitImg, passwordImg, aiChatImg, FoodRecipeImg } from '../assets/index'
 import { Link } from 'react-router-dom'
 
 function Home() {
@@ -39,6 +39,13 @@ function Home() {
             src: aiChatImg,
             alt: 'ai-img',
             path: '/ai-chat'
+        },
+        {
+            name: 'Food Recipe',
+            description: 'Find simple and tasty recipes for every occasion. Explore a variety of dishes to suit your taste and skill level.',
+            src: FoodRecipeImg,
+            alt: 'food-recipe-img',
+            path: '/food-item'
         },
     ]
   return (

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { Input, Button } from "../index";
 
 function BMICalculator() {
   const [height, setHeight] = useState("");
@@ -8,6 +9,7 @@ function BMICalculator() {
   const [result, setResult] = useState("");
   const [heightInCm, setHeightInCm] = useState("");
   const [heightConvertErr, setHeightConvertErr] = useState("");
+  const [showBmiInfo, setShowBmiInfo] = useState(false);
 
   const handleBmi = (e) => {
     setError("");
@@ -31,8 +33,8 @@ function BMICalculator() {
   };
 
   const handleHeightConvert = () => {
-    setHeightConvertErr('')
-    setHeightConvert('')
+    setHeightConvertErr("");
+    setHeightConvert("");
     if (heightConvert.trim() === "") {
       setHeightConvertErr("Please Enter Height");
     } else {
@@ -43,21 +45,42 @@ function BMICalculator() {
 
   return (
     <div className="w-full">
-      <div className="bg-zinc-200 dark:bg-yellow-100 text-black p-5">
-        <h1 className="text-left text-3xl font-bold max-[550px]:text-2xl">Body Mass Index (BMI)</h1>
-        <p className="text-left text-xl max-[550px]:text-lg">
-          Body mass index (BMI) is a medical screening tool that measures the
-          ratio of your height to your weight to estimate the amount of body fat
-          you have, but does not differentiate muscle mass from fat mass.
-        </p>
-        <h1 className="text-left text-xl font-semibold mt-4">
-          BMI Categories :
-        </h1>
-        <li className="text-left">{`Underweight: BMI < 18.5`}</li>
-        <li className="text-left">{`Normal weight: BMI 18.5–24.9`}</li>
-        <li className="text-left">{`Overweight: BMI 25–29.9`}</li>
-        <li className="text-left">{`Obesity: BMI ≥ 30`}</li>
-      </div>
+      {showBmiInfo ? (
+        <div className="bg-zinc-200 dark:bg-[#404040] text-black dark:text-white p-5">
+          <div className="flex justify-between">
+            <h1 className="text-left text-3xl font-bold max-[550px]:text-2xl">
+              Body Mass Index (BMI)
+            </h1>
+            <i
+              onClick={() => setShowBmiInfo(false)}
+              className="uil uil-multiply text-xl cursor-pointer transition duration-150 ease-in-out hover:text-[rgb(218,58,58)] active:text-[#00ff47] hover:[text-shadow:_0_0_30px_rgb(255_0_0)]"
+            ></i>
+          </div>
+          <p className="text-left text-lg max-[550px]:text-lg">
+            Body mass index (BMI) is a medical screening tool that measures the
+            ratio of your height to your weight to estimate the amount of body
+            fat you have, but does not differentiate muscle mass from fat mass.
+          </p>
+          <h1 className="text-left text-xl font-semibold mt-4">
+            BMI Categories :
+          </h1>
+          <li className="text-left">{`Underweight: BMI < 18.5`}</li>
+          <li className="text-left">{`Normal weight: BMI 18.5–24.9`}</li>
+          <li className="text-left">{`Overweight: BMI 25–29.9`}</li>
+          <li className="text-left">{`Obesity: BMI ≥ 30`}</li>
+        </div>
+      ) : (
+        <button
+          className="flex cursor-pointer"
+          onClick={() => setShowBmiInfo(true)}
+        >
+          <i className="uil-question-circle text-[#202020] dark:text-white">
+            <span className="text-sm underline text-[#202020] dark:text-white">
+              What is BMI?
+            </span>
+          </i>
+        </button>
+      )}
 
       <div className="flex flex-col gap-20 mt-4">
         <form
@@ -67,49 +90,41 @@ function BMICalculator() {
           <h1 className="text-3xl font-semibold text-[#202020] dark:text-yellow-400 max-[550px]:text-2xl">
             BMI CALCULATOR
           </h1>
+          <Input
+            label="Height"
+            type="number"
+            placeholder="cm"
+            value={height}
+            onChange={(e) => setHeight(e.target.value)}
+          />
+
+          <Input
+            label="Weight"
+            type="number"
+            placeholder="kg"
+            value={weight}
+            onChange={(e) => setWeight(e.target.value)}
+          />
+
           <div className="flex items-center gap-4">
-            <label className="text-lg font-medium text-[#202020] dark:text-white" htmlFor="height">
-              Height
-            </label>
-            <input
-              className="w-full px-3 py-2 border-[1px] text-black border-[#202020] bg-zinc-100 dark:bg-black dark:text-white dark:border-yellow-400 focus:outline-none"
-              type="text"
-              placeholder="cm"
-              id="height"
-              value={height}
-              onChange={(e) => setHeight(e.target.value)}
-            />
-          </div>
-          <div className="flex items-center gap-4">
-            <label className="text-lg font-medium text-[#202020] dark:text-white" htmlFor="weight">
-              Weight
-            </label>
-            <input
-              className="w-full px-3 py-2 border-[1px] text-black border-[#202020] bg-zinc-100 dark:bg-black dark:text-white dark:border-yellow-400 focus:outline-none"
-              type="text"
-              placeholder="kg"
-              id="weight"
-              value={weight}
-              onChange={(e) => setWeight(e.target.value)}
-            />
-          </div>
-          <div className="flex items-center gap-4">
-          <p
-            className="text-lg font-medium text-[#202020] dark:text-white"
-            htmlFor="result"
+            <p
+              className="text-lg font-medium text-[#202020] dark:text-white"
+              htmlFor="result"
             >
-            Result :
-          </p>
-          <p className="text-lg font-medium text-[#202020] border-b-[1px] border-b-zinc-600 dark:text-yellow-400 dark:border-yellow-400">
+              Result :
+            </p>
             {result ? (
-              result
-            ) : <div className="w-20 pt-3 border-[0px] border-b-[#202020]"></div>}
-          </p>
-        </div>
-          <button className="text-xl font-semibold px-3 py-2 text-[#202020] bg-zinc-200 border-[1px] border-[#202020] transition duration-150 ease-in hover:bg-black hover:text-white dark:hover:text-white dark:hover:bg-black dark:text-yellow-400 dark:bg-transparent dark:border-yellow-400">
-            Calculate
-          </button>
-            {error && <p className="text-lg text-[#202020] dark:text-white">{error}</p>}
+              <p className="text-lg font-medium text-[#202020] border-b-[1px] border-b-zinc-600 dark:text-yellow-400 dark:border-yellow-400">
+                {result}
+              </p>
+            ) : (
+              <div className="w-20 pt-3 border-[1px] border-transparent border-b-[#202020] dark:border-b-yellow-400"></div>
+            )}
+          </div>
+          <Button>Calculate</Button>
+          {error && (
+            <p className="text-lg text-[#202020] dark:text-white">{error}</p>
+          )}
         </form>
 
         <div className="flex flex-col gap-4 mt-4 p-5 shadow-xl border-[1px] bg-zinc-100 dark:bg-[#202020] border-[#202020] dark:border-yellow-400">
@@ -117,40 +132,35 @@ function BMICalculator() {
             Convert Feet into Cm
           </h1>
           <div className="flex gap-4 max-[550px]:flex-col">
-            <div className="w-full flex items-center gap-4">
-              <label className="text-lg font-medium text-[#202020] dark:text-white" htmlFor="heightConv">
-                Height
-              </label>
-              <input
-                className="w-full px-3 py-2 border-[1px] text-black border-[#202020] bg-zinc-100 dark:bg-black dark:text-white dark:border-yellow-400 focus:outline-none"
-                type="text"
-                placeholder="feet"
-                id="heightConv"
-                value={heightConvert}
-                onChange={(e) => setHeightConvert(e.target.value)}
-              />
-            </div>
-            <button
-              onClick={handleHeightConvert}
-              className="text-xl font-semibold px-3 py-2 text-[#202020] bg-zinc-200 border-[1px] border-[#202020] transition duration-150 ease-in hover:bg-black hover:text-white dark:hover:text-white dark:hover:bg-black dark:text-yellow-400 dark:bg-transparent dark:border-yellow-400 max-[550px]:w-full max-[550px]:text-lg"
-            >
-              Convert
-            </button>
+            <Input
+              label="Height"
+              type="number"
+              placeholder="feet"
+              value={heightConvert}
+              onChange={(e) => setHeightConvert(e.target.value)}
+            />
           </div>
           <div className="flex items-center gap-4">
-          <p
-            className="text-lg font-medium text-[#202020] dark:text-white"
-            htmlFor="result"
-          >
-            Result :
-          </p>
+            <p
+              className="text-lg font-medium text-[#202020] dark:text-white"
+              htmlFor="result"
+            >
+              Result :
+            </p>
             {heightInCm ? (
               <p className="text-lg font-medium text-[#202020] border-b-[1px] border-b-zinc-600 dark:text-yellow-400 dark:border-yellow-400">
                 {`${heightInCm} cm`}
               </p>
-            ) : <div className="w-20 pt-3 border-[1px] border-transparent border-b-[#202020] dark:border-b-yellow-400"></div>}
-        </div>
-            {heightConvertErr && <p className="text-lg text-[#202020] dark:text-white">{heightConvertErr}</p>}
+            ) : (
+              <div className="w-20 pt-3 border-[1px] border-transparent border-b-[#202020] dark:border-b-yellow-400"></div>
+            )}
+          </div>
+          <Button onClick={handleHeightConvert}>Convert</Button>
+          {heightConvertErr && (
+            <p className="text-lg text-[#202020] dark:text-white">
+              {heightConvertErr}
+            </p>
+          )}
         </div>
       </div>
     </div>

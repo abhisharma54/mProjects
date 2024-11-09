@@ -7,6 +7,7 @@ import {
   listAiLight,
   listAiDark,
 } from "../../assets/index";
+import { Input } from "../index";
 
 function AiChat() {
   const [prompt, setPrompt] = useState("");
@@ -26,30 +27,33 @@ function AiChat() {
       setPrompt("");
       const result = await model.generateContent(prompt);
       const res = result.response.text().replace(/\*/g, "").replace("##", "");
-      setData((prev) => [...prev, { message: res }]);
+      setData((prev) => [...prev, { question: prompt, message: res }]);
     } catch (error) {
-      setError(error);
+      setError(error.message);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="w-full">
-      <div className="flex flex-col items-center">
-        <div className="w-full flex flex-col gap-4 p-4 mb-4 max-[550px]:px-1">
+    <div className="w-full flex justify-center">
+      <div className="w-[50rem] flex flex-col items-center max-[1024px]:w-full">
+        <div className="w-full flex flex-col gap-4 mt-4 max-[550px]:px-1">
           {data?.length === 0 ? (
             <p className="text-3xl font-bold mt-20 text-[#202020] dark:text-white">
-            How can I help you?
-          </p>
-          ) : (data.map((item, index) => (
-              <li
-                key={index}
-                className="text-black text-justify dark:text-white"
-              >
-                {item.message}
-              </li>
-            ))
+              How can I help you?
+            </p>
+          ) : (
+              data.map((item, index) => (
+                <div key={index} className="flex flex-col gap-3">
+                  <p className="text-black font-semibold bg-zinc-200 self-end px-3 py-2 rounded-md text-right dark:text-white dark:bg-[#303030]">{item.question}</p>
+                  <p
+                    className="text-black bg-zinc-100 self-start px-3 py-2 rounded-md text-justify dark:text-white dark:bg-zinc-700"
+                  >
+                    {item.message}
+                  </p>
+                </div>
+              ))
           )}
           {loading && (
             <div className="flex gap-2">
@@ -66,10 +70,9 @@ function AiChat() {
         </div>
         <form
           onSubmit={handleAiChat}
-          className="flex justify-center w-[50rem] px-10 gap-2 fixed bottom-0 pt-1 pb-10 bg-white dark:bg-[#202020] max-[1024px]:w-full"
+          className="flex justify-center w-[50rem] px-10 gap-2 fixed bottom-0 pb-10 bg-white dark:bg-[#202020] max-[1024px]:w-full"
         >
-          <input
-            className="w-full px-3 py-2 border-[1px] text-black border-[#202020] bg-zinc-200 dark:bg-black dark:text-white dark:border-yellow-400 focus:outline-none"
+          <Input
             type="text"
             placeholder="Ask..."
             value={prompt}

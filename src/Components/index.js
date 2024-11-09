@@ -8,6 +8,11 @@ import PasswordGenerator from './PasswordGenerator/PasswordGenerator'
 import UnitConverter from "./UnitConversion/UnitConverter";
 import CurrencyConverter from "./CurrencyConverter/CurrencyConverter";
 import AiChat from "./AIChat/AiChat";
+import Input from "./Input";
+import Button from "./Button";
+import FoodItem from "./FoodRecipe/FoodItem";
+import Recipe from "./FoodRecipe/Recipe";
+import ItemCard from "./FoodRecipe/ItemCard";
 
 export {
     Header,
@@ -20,4 +25,9 @@ export {
     UnitConverter,
     CurrencyConverter,
     AiChat,
+    Input,
+    Button,
+    FoodItem,
+    Recipe,
+    ItemCard,
 }

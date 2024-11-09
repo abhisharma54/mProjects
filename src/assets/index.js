@@ -16,6 +16,7 @@ import arrowDarkIcon from './images/arrow-dark.png'
 import logo from './images/mProjects-logo.jpg'
 import listAiLight from './images/list-light.png'
 import listAiDark from './images/list-dark.png'
+import FoodRecipeImg from './images/foodRecipe.jpg'
 
 export {
     bmiImg,
@@ -35,5 +36,6 @@ export {
     arrowDarkIcon,
     logo, 
     listAiLight,
-    listAiDark
+    listAiDark,
+    FoodRecipeImg
 }

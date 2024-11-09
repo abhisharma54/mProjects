@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { unitParameter } from "./Unit";
+import { Input, Button } from "../index";
 
 function UnitConverter() {
   const [type, setType] = useState("length");
@@ -235,21 +236,14 @@ function UnitConverter() {
             </select>
           </div>
         </div>
-        <div className="flex items-center gap-4">
-          <label
-            className="text-lg font-medium text-[#202020] dark:text-white"
-            htmlFor="value"
-          >
-            Value
-          </label>
-          <input
-            className="w-full px-3 py-2 border-[1px] text-black border-[#202020] bg-zinc-200 dark:bg-black dark:text-white dark:border-yellow-400 focus:outline-none"
-            type="number"
-            placeholder="enter a value"
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-          />
-        </div>
+        <Input
+          className="bg-zinc-200"
+          label="Value"
+          type="number"
+          placeholder="enter a value"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        />
         <div className="flex items-center gap-4">
           <p
             className="text-lg font-medium text-[#202020] dark:text-white"
@@ -264,12 +258,12 @@ function UnitConverter() {
               </span>
             ) : result ? (
               result
-            ) : <div className="w-20 pt-3 border-[0px] border-b-[#202020]"></div>}
+            ) : (
+              <div className="w-20 pt-3 border-[0px] border-b-[#202020]"></div>
+            )}
           </p>
         </div>
-        <button className="text-xl font-semibold px-3 py-2 text-[#202020] bg-zinc-200 border-[1px] border-[#202020] transition duration-150 ease-in hover:bg-black hover:text-white dark:hover:text-white dark:hover:bg-black dark:text-yellow-400 dark:bg-transparent dark:border-yellow-400 max-[550px]:text-lg">
-          {`CONVERT ${type.toUpperCase()}`}
-        </button>
+        <Button>{`CONVERT ${type.toUpperCase()}`}</Button>
       </form>
       {error ? (
         <p className="y-4 text-xl font-semibold text-[#202020] dark:text-yellow-400">

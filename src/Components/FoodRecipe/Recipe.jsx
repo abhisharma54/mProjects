@@ -46,9 +46,9 @@ function Recipe() {
 
   return (
     <div className="w-full">
-      <div className="flex justify-center items-center min-h-[80vh] h-auto rounded-md shadow-[0px_0px_20px_-12px] bg-zinc-100 dark:bg-[#303030]">
+      <div className="flex justify-center items-center min-h-[80vh] h-auto p-2 border border-[#303030] dark:border-yellow-400">
         {loading ? (
-          <p className="text-3xl font-semibold text-[#202020] dark:text-yellow-400">
+          <p className="text-3xl font-semibold text-[#202020] dark:text-yellow-400 max-[550px]:text-xl">
             Loading Food Recipe...
           </p>
         ) : error ? (
@@ -56,10 +56,10 @@ function Recipe() {
             {error}
           </p>
         ) : (
-          <div className="flex gap-5 px-6 py-4 min-h-[80vh] h-auto rounded-md shadow-[0px_0px_20px_-12px] bg-zinc-100 dark:bg-[#303030] max-[768px]:flex-col">
-            <div className="food-img w-[430px] max-[550px]:w-full">
+          <div className="flex gap-5 px-6 py-4 min-h-[80vh] h-auto bg-zinc-200 dark:bg-[#303030] max-[768px]:flex-col">
+            <div className="food-img w-[450px] h-[300px] bg-zinc-300 rounded-md dark:bg-[#242424] overflow-hidden max-[768px]:w-[400px] max-[550px]:w-full">
               <img
-                className="rounded-md"
+                className="w-full h-full object-cover"
                 src={foodData.strMealThumb}
                 alt={foodData.strMeal}
               />

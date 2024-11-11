@@ -51,10 +51,10 @@ console.log("error", error);
         <h2 className="text-lg text-[#202020] dark:text-yellow-400">{error}</h2>
       )}
       
-      <div className="flex flex-wrap justify-center gap-8 items-center max-[425px]:gap-4">
+      <div className="flex flex-wrap justify-center gap-8 items-center max-[550px]:gap-4">
         {loading ? (
           <h2 className="text-xl text-[#202020] dark:text-yellow-400">
-            Searching item...
+            Searching food...
           </h2>
         ) : (
           foodData?.map((item) => (

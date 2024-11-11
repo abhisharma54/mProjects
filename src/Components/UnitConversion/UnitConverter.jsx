@@ -263,7 +263,7 @@ function UnitConverter() {
             )}
           </p>
         </div>
-        <Button>{`CONVERT ${type.toUpperCase()}`}</Button>
+        <Button className="max-[550px]:text-base">{`CONVERT ${type.toUpperCase()}`}</Button>
       </form>
       {error ? (
         <p className="y-4 text-xl font-semibold text-[#202020] dark:text-yellow-400">

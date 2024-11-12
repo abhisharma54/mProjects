@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 function ItemCard({ imgSrc, imgAlt, itemName, itemCategory, itemId }) {
   const navigate = useNavigate();
+  console.log('item card')
 
   return (
     <div className="w-[340px] p-2 border-[1px] border-[#202020] dark:border-yellow-400 max-[780px]:w-[250px] max-[600px]:w-[350px] max-[435px]:w-full">
@@ -28,4 +29,4 @@ function ItemCard({ imgSrc, imgAlt, itemName, itemCategory, itemId }) {
   );
 }
 
-export default ItemCard;
+export default React.memo(ItemCard);

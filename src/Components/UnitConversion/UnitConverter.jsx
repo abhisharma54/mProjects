@@ -11,6 +11,8 @@ function UnitConverter() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  console.log("unit")
+
   const unit = async () => {
     const url = `https://measurement-unit-converter.p.rapidapi.com/${type}?value=${value}&from=${from}&to=${to}`;
     const options = {
@@ -245,23 +247,20 @@ function UnitConverter() {
           onChange={(e) => setValue(e.target.value)}
         />
         <div className="flex items-center gap-4">
-          <p
-            className="text-lg font-medium text-[#202020] dark:text-white"
-            htmlFor="result"
-          >
+          <p className="text-lg font-medium text-[#202020] dark:text-white">
             Result :
           </p>
-          <p className="text-lg font-medium text-[#202020] border-b-[1px] border-b-zinc-600 dark:text-yellow-400 dark:border-yellow-400">
-            {loading ? (
-              <span className="font-normal text-[#202020] dark:text-white">
-                converting...
-              </span>
-            ) : result ? (
-              result
-            ) : (
-              <div className="w-20 pt-3 border-[0px] border-b-[#202020]"></div>
-            )}
-          </p>
+          {loading ? (
+            <span className="text-lg font-medium text-[#202020] border-b-[1px] border-b-zinc-600 dark:text-yellow-400 dark:border-yellow-400">
+              converting...
+            </span>
+          ) : result ? (
+            <p className="text-lg font-medium text-[#202020] border-b-[1px] border-b-zinc-600 dark:text-yellow-400 dark:border-yellow-400">
+              {result}
+            </p>
+          ) : (
+            <div className="w-20 pt-3 border-[1px] border-transparent border-b-[#202020] dark:border-b-yellow-400"></div>
+          )}
         </div>
         <Button className="max-[550px]:text-base">{`CONVERT ${type.toUpperCase()}`}</Button>
       </form>

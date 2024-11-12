@@ -8,11 +8,11 @@ function FoodItem() {
   const [loading, setLoading] = useState(false);
 
   const handleFoodSearch = async () => {
+    setError("");
+    setInput("");
+    setLoading(true);
     let url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${input}`;
     try {
-      setError("");
-      setInput("");
-      setLoading(true);
       const res = await fetch(url);
       const data = await res.json();
       if (!data.meals) {
@@ -20,12 +20,11 @@ function FoodItem() {
       }
       setFoodData(data.meals);
     } catch (error) {
-        setError(error.message);
+      setError(error.message);
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
-};
-console.log("error", error);
+  };
 
   useEffect(() => {
     handleFoodSearch("");
@@ -50,7 +49,7 @@ console.log("error", error);
       {error && (
         <h2 className="text-lg text-[#202020] dark:text-yellow-400">{error}</h2>
       )}
-      
+
       <div className="flex flex-wrap justify-center gap-8 items-center max-[550px]:gap-4">
         {loading ? (
           <h2 className="text-xl text-[#202020] dark:text-yellow-400">

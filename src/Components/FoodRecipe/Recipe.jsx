@@ -38,7 +38,7 @@ function Recipe() {
     }
   };
 
-  console.log("food data : ", foodData);
+  console.log("recipe : ", foodData);
 
   useEffect(() => {
     handleFoodRecipe();

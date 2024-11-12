@@ -10,7 +10,7 @@ function BMICalculator() {
   const [heightInCm, setHeightInCm] = useState("");
   const [heightConvertErr, setHeightConvertErr] = useState("");
   const [showBmiInfo, setShowBmiInfo] = useState(false);
-
+console.log("bmi")
   const handleBmi = (e) => {
     setError("");
     setHeight("");
@@ -75,14 +75,14 @@ function BMICalculator() {
           onClick={() => setShowBmiInfo(true)}
         >
           <i className="uil-question-circle text-[#202020] dark:text-white">
-            <span className="text-sm underline text-[#202020] dark:text-white">
+            <span className="text-sm underline text-[#202020] dark:text-white dark:hover:text-yellow-400">
               What is BMI?
             </span>
           </i>
         </button>
       )}
 
-      <div className="flex flex-col gap-20 mt-4">
+      <div className="flex flex-col gap-10 mt-4">
         <form
           onSubmit={handleBmi}
           className="flex flex-col gap-4 mt-4 p-5 shadow-xl border-[1px] bg-zinc-100 dark:bg-[#202020] border-[#202020] dark:border-yellow-400"
@@ -109,7 +109,6 @@ function BMICalculator() {
           <div className="flex items-center gap-4">
             <p
               className="text-lg font-medium text-[#202020] dark:text-white"
-              htmlFor="result"
             >
               Result :
             </p>
@@ -123,7 +122,7 @@ function BMICalculator() {
           </div>
           <Button>Calculate</Button>
           {error && (
-            <p className="text-lg text-[#202020] dark:text-white">{error}</p>
+            <p className="text-lg font-medium text-[#202020] dark:text-yellow-400">{error}</p>
           )}
         </form>
 
@@ -143,7 +142,6 @@ function BMICalculator() {
           <div className="flex items-center gap-4">
             <p
               className="text-lg font-medium text-[#202020] dark:text-white"
-              htmlFor="result"
             >
               Result :
             </p>
@@ -157,7 +155,7 @@ function BMICalculator() {
           </div>
           <Button onClick={handleHeightConvert}>Convert</Button>
           {heightConvertErr && (
-            <p className="text-lg text-[#202020] dark:text-white">
+            <p className="text-lg font-medium text-[#202020] dark:text-yellow-400">
               {heightConvertErr}
             </p>
           )}

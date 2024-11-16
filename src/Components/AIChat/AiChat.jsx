@@ -17,7 +17,7 @@ function AiChat() {
 
   const themeData = useSelector((state) => state.mode);
   const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
 
   const handleAiChat = async (e) => {
     e.preventDefault();
@@ -26,6 +26,7 @@ function AiChat() {
       setError("");
       setPrompt("");
       const result = await model.generateContent(prompt);
+      console.log(result)
       const res = result.response.text().replace(/\*/g, "").replace("##", "");
       setData((prev) => [...prev, { question: prompt, message: res }]);
     } catch (error) {
@@ -65,7 +66,7 @@ function AiChat() {
               <p className="text-[#202020] dark:text-yellow-400">wait...</p>
             </div>
           )}
-          {error && <p className="text-black dark:text-white">{error}</p>}
+          {error && <p className="text-black bg-zinc-100 p-3 rounded-md dark:text-white dark:bg-zinc-700 overflow-auto">{error}</p>}
           <div className="h-[50px]"></div>
         </div>
         <form

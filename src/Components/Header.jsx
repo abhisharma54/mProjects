@@ -14,8 +14,6 @@ function Header() {
   const themeData = useSelector((state) => state.mode);
   const dispatch = useDispatch();
 
-  console.log("Header")
-
   const navItem = [
     {
       name: "Projects",

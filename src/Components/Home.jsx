@@ -52,7 +52,7 @@ function Home() {
     <div>
         <div className='flex flex-wrap gap-10 justify-center'>
             {projectItem.map((project, index) => (
-                <Link to={project.path} className='list-none' key={index}>
+                <Link to={project.path} className='list-none min-w-[350px]' key={index}>
                     <ProjectCard imgSrc={project.src} imgAlt={project.alt} projectName={project.name} description={project.description} />
                 </Link>
             ))}

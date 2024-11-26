@@ -48,7 +48,7 @@ function Header() {
   return (
     <>
       <div className="w-full">
-        <div className="flex justify-center">
+        <div className="flex justify-center absolute top-10 left-0 right-0 z-20">
           <header
             className={
               menu
@@ -93,7 +93,7 @@ function Header() {
           <button
             onClick={() => setMenu((prev) => !prev)}
             title="menu"
-            className="w-[30px] hidden absolute top-5 right-20 cursor-pointer transition duration-150 ease-in focus:outline-none hover:scale-105 max-[550px]:flex max-[550px]:items-center max-[550px]:gap-1"
+            className="w-[30px] hidden absolute top-0 right-20 cursor-pointer transition duration-150 ease-in focus:outline-none hover:scale-105 max-[550px]:flex max-[550px]:items-center max-[550px]:gap-1"
           >
             {menu ? <p className="text-[1.5rem] cursor-pointer fixed mt-10 ml-10 transition duration-150 ease-in-out hover:[text-shadow:_0_0_20px_rgb(255_0_0)] dark:text-white">❌</p> : (
               <>
@@ -109,7 +109,7 @@ function Header() {
           </button>
         </div>
       </div>
-      <div className="h-8"></div>
+      <div className="h-24 max-[550px]:h-16"></div>
       <main onClick={() => setMenu(false)}>
         <Outlet />
       </main>

@@ -17,7 +17,7 @@ function ItemCard({ imgSrc, imgAlt, itemName, itemCategory, itemId }) {
         <p className="text-[#202020] font-medium dark:text-white group-hover:text-white">({itemCategory})</p>
         <Button
           onClick={() => navigate(`${itemId}`)}
-          className="my-3 text-nowrap bg-transparent border border-white text-white rounded-full max-[550px]:text-base"
+          className="my-3 text-nowrap bg-zinc-800 border border-white text-white rounded-full max-[550px]:text-base"
         >
           Read Recipe
         </Button>

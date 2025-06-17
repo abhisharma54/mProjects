@@ -65,15 +65,15 @@ function CurrencyConverter() {
     <div className="w-full">
       <form
         onSubmit={handleCurrency}
-        className="flex flex-col gap-4 p-5 shadow-2xl bg-zinc-100 border-[1px] border-[#202020] rounded-[var(--boxRadius)] dark:border-yellow-400 dark:bg-transparent"
+        className="flex flex-col gap-4 p-5 shadow-2xl bg-[var(--bgCardColor)] border border-[#202020] rounded-[var(--boxRadius)] dark:bg-[var(--bgDarkCardColor)]"
       >
-        <h1 className="text-3xl text-nowrap font-semibold text-[#202020] dark:text-yellow-400 max-[550px]:text-2xl">
+        <h1 className="text-3xl text-nowrap font-semibold text-[var(--textColor)] max-[550px]:text-2xl">
           CURRENCY CONVERTER
         </h1>
         <div className="flex items-center gap-4 max-[550px]:flex-col">
           <div className="w-full flex items-center gap-4">
             <label
-              className="text-lg text-nowrap font-medium text-[#202020] dark:text-white"
+              className="text-lg text-nowrap font-medium text-[var(--textColor)] dark:text-white"
               htmlFor="from"
             >
               From :
@@ -83,7 +83,7 @@ function CurrencyConverter() {
                 setCurrencies((prev) => ({ ...prev, from: e.target.value }))
               }
               value={currencies.from}
-              className="w-full px-3 py-2 border-[1px] text-black border-[#202020] bg-zinc-200 rounded-[var(--inputRadius)] dark:bg-black dark:text-white dark:border-yellow-400 focus:outline-none cursor-pointer max-[550px]:w-full"
+              className="w-full px-3 py-2 border-[1px] text-black border-[#202020] bg-[var(--bgColor)] rounded-[var(--inputRadius)] focus:outline-none cursor-pointer max-[550px]:w-full"
             >
               <option>Select a currency</option>
               {currencyList.map((currency, index) => (
@@ -96,7 +96,7 @@ function CurrencyConverter() {
           </div>
           <div className="w-full flex items-center gap-4">
             <label
-              className="text-lg text-nowrap font-medium text-[#202020] dark:text-white"
+              className="text-lg text-nowrap font-medium text-[var(--textColor)] dark:text-white"
               htmlFor="from"
             >
               To :
@@ -106,7 +106,7 @@ function CurrencyConverter() {
                 setCurrencies((prev) => ({ ...prev, to: e.target.value }))
               }
               value={currencies.to}
-              className="w-full px-3 py-2 border-[1px] text-black border-[#202020] bg-zinc-200 rounded-[var(--inputRadius)] dark:bg-black dark:text-white dark:border-yellow-400 focus:outline-none cursor-pointer max-[550px]:w-full"
+              className="w-full px-3 py-2 border-[1px] text-black border-[#202020] bg-[var(--bgColor)] rounded-[var(--inputRadius)] focus:outline-none cursor-pointer max-[550px]:w-full"
             >
               <option>Select a currency</option>
               {currencyList.map((currency, index) => (
@@ -126,28 +126,28 @@ function CurrencyConverter() {
           onChange={(e) => setAmount(e.target.value)}
         />
         <div className="flex items-center gap-4">
-          <p className="text-lg font-medium text-[#202020] dark:text-white">
+          <p className="text-lg font-medium text-[var(--textColor)] dark:text-white">
             Result :
           </p>
           {loading ? (
-            <span className="text-lg font-medium text-[#202020] border-b-[1px] border-b-zinc-600 dark:text-yellow-400 dark:border-yellow-400">
+            <span className="text-lg font-medium text-[var(--textColor)] border-b-[1px] border-b-zinc-600 dark:text-white">
               converting...
             </span>
           ) : currencies.result ? (
-            <p className="text-lg font-medium text-[#202020] border-b-[1px] border-b-zinc-600 dark:text-yellow-400 dark:border-yellow-400">
+            <p className="text-lg font-medium text-[var(--textColor)] border-b-[1px] border-b-zinc-600 dark:text-white">
               {currencies.result}
             </p>
           ) : (
-            <div className="w-20 pt-3 border-[1px] border-transparent border-b-[#202020] dark:border-b-yellow-400"></div>
+            <div className="w-20 pt-3 border-[1px] border-transparent border-b-[#202020]"></div>
           )}
         </div>
         <Button>{`Convert ${currencies.from} to ${currencies.to}`}</Button>
+        {error ? (
+          <p className="py-2 text-xl font-semibold text-[var(--textColor)] dark:text-white">
+            {error}
+          </p>
+        ) : null}
       </form>
-      {error ? (
-        <p className="py-4 text-xl font-semibold text-[#202020] dark:text-yellow-400">
-          {error}
-        </p>
-      ) : null}
     </div>
   );
 }

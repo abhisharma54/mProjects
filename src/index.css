@@ -3,15 +3,28 @@
 @tailwind utilities;
 
 :root {
-  --bgColor: #ededed;
-  --bgDarkColor: #202020;
+  --bgColor: #dddddd;
+  --bgDarkColor: #1d2228;
+  --textColor: #dddddd;
+  --bgCardColor: #5f97a2;
+  --bgDarkCardColor: #1ba098;
   --boxRadius: 15px;
   --inputRadius: 8px;
+  --bgBtnColor: #225964;
+  --hoverBtnColor: #194c57;
+
+  --logoColor: #194c57;
+  --logoDarkColor: #1ba098;
 }
 
 body {
   width: 100vw;
   height: 100vh;
+  background-color: var(--bgColor);
+}
+
+html.dark body {
+  background-color: var(--bgDarkColor);
 }
 
 #root {
@@ -20,4 +33,21 @@ body {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+
+input[type="range"] {
+  appearance: none;
+  height: 8px;
+  background-color: var(--bgBtnColor);
+  border-radius: 50px;
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  background-color: var(--bgColor);
+  cursor: pointer;
+  border-radius: 50%;
 }

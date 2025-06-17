@@ -40,16 +40,16 @@ function AiChat() {
       <div className="w-[50rem] flex flex-col items-center max-[1024px]:w-full">
         <div className="w-full flex flex-col gap-4 mt-4 max-[550px]:px-1">
           {data?.length === 0 ? (
-            <p className="text-3xl font-bold mt-20 text-[#202020] dark:text-white">
+            <p className="text-3xl font-bold mt-20 text-[var(--hoverBtnColor)] dark:text-white">
               How can I help you?
             </p>
           ) : (
             data.map((item, index) => (
               <div key={index} className="flex flex-col gap-3">
-                <p className="text-black font-semibold bg-zinc-200 self-end px-3 py-2 rounded-[var(--inputRadius)] text-right dark:text-white dark:bg-[#303030]">
+                <p className="text-[var(--textColor)] font-semibold bg-[var(--bgBtnColor)] self-end px-3 py-2 rounded-[var(--inputRadius)] text-right dark:bg-[var(--bgDarkCardColor)] dark:text-white">
                   {item.question}
                 </p>
-                <p className="text-black bg-zinc-100 self-start px-3 py-2 rounded-[var(--inputRadius)] text-justify dark:text-white dark:bg-zinc-700">
+                <p className="text-[var(--textColor)] bg-[var(--hoverBtnColor)] self-start px-3 py-2 rounded-[var(--inputRadius)] text-justify dark:bg-[var(--bgBtnColor)]">
                   {item.message}
                 </p>
               </div>
@@ -62,7 +62,9 @@ function AiChat() {
                 src={theme === "light" ? listAiLight : listAiDark}
                 alt="listAi-icon"
               />
-              <p className="text-[#202020] dark:text-yellow-400">wait...</p>
+              <p className="text-[var(--hoverBtnColor)] dark:text-white">
+                wait...
+              </p>
             </div>
           )}
           {error && (
@@ -74,9 +76,10 @@ function AiChat() {
         </div>
         <form
           onSubmit={handleAiChat}
-          className="flex justify-center w-[50rem] px-10 gap-2 fixed bottom-0 pb-10 bg-white dark:bg-[#202020] max-[1024px]:w-full"
+          className="flex justify-center w-[50rem] px-10 gap-2 fixed bottom-0 pb-10 bg-[var(--bgColor)] dark:bg-[#202020] max-[1024px]:w-full"
         >
           <Input
+            className="bg-white"
             type="text"
             placeholder="Ask..."
             value={prompt}

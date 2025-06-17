@@ -34,6 +34,7 @@ function FoodItem() {
     <div className="w-full flex flex-col">
       <div className="flex gap-2 py-5">
         <Input
+          className="bg-white"
           type="text"
           placeholder="food"
           value={input}
@@ -44,13 +45,11 @@ function FoodItem() {
         </Button>
       </div>
 
-      {error && (
-        <h2 className="text-lg text-[#202020] dark:text-yellow-400">{error}</h2>
-      )}
+      {error && <h2 className="text-lg text-[var(--bgBtnColor)]">{error}</h2>}
 
       <div className="flex flex-wrap justify-center gap-8 items-center max-[550px]:gap-4">
         {loading ? (
-          <h2 className="text-xl text-[#202020] dark:text-yellow-400">
+          <h2 className="text-xl text-[var(--bgBtnColor)] dark:text-[var(--bgDarkCardColor)]">
             Searching food...
           </h2>
         ) : (

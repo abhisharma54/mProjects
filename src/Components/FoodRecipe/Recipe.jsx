@@ -55,25 +55,23 @@ function Recipe() {
   return (
     <div className="w-full min-h-[80vh] h-full flex justify-center items-center">
       {loading ? (
-        <p className="text-2xl bg-[#202020] text-white rounded-full px-10 py-3 font-semibold dark:bg-yellow-400 dark:text-[#202020] max-[550px]:text-xl">
+        <p className="text-2xl bg-[var(--bgBtnColor)] text-white rounded-full px-10 py-3 font-semibold dark:bg-[var(--bgDarkCardColor)] max-[550px]:text-xl">
           Loading Food Recipe...
         </p>
       ) : error ? (
-        <p className="text-2xl bg-[#202020] text-white rounded-full px-10 py-3 font-semibold dark:bg-yellow-400 dark:text-red-500 max-[550px]:text-xl">
+        <p className="text-2xl bg-[var(--bgBtnColor)] text-white rounded-full px-10 py-3 font-semibold max-[550px]:text-xl">
           {error}
         </p>
       ) : (
-        <div className="flex min-h-[80vh] max-w-[800px] bg-zinc-100 rounded-[var(--boxRadius)] dark:bg-[#303030] border border-[#303030] dark:border-yellow-400">
+        <div className="flex min-h-[80vh] max-w-[800px] bg-[var(--bgCardColor)] rounded-[var(--boxRadius)] dark:bg-[var(--bgDarkCardColor)] border border-[#202020]">
           <div className="flex flex-col gap-2 py-4">
             <div className="flex gap-2 justify-center text-3xl font-bold tracking-wider">
-              <span className="text-[#555555] dark:text-yellow-400">
-                {foodData.strMeal}
-              </span>
-              <span className="text-black dark:text-white">Food Recipe</span>
+              <span className="text-white">{foodData.strMeal}</span>
+              <span className="text-[var(--hoverBtnColor)]">Food Recipe</span>
             </div>
             <div className="flex flex-col gap-5 px-6 py-4 max-[768px]:flex-col max-[550px]:px-3">
               <div className="flex gap-4 max-[768px]:flex-col">
-                <div className="food-img w-[480px] h-[300px] bg-zinc-300  rounded-[var(--boxRadius)] dark:bg-[#242424] overflow-hidden max-[768px]:w-full max-[768px]:h-[400px] max-[550px]:h-[300px]">
+                <div className="food-img w-[480px] h-[300px] bg-[var(--bgColor)] border border-[#202020] shadow-lg rounded-[var(--boxRadius)] dark:bg-[#242424] overflow-hidden max-[768px]:w-full max-[768px]:h-[400px] max-[550px]:h-[300px]">
                   <img
                     className="w-full h-full object-cover"
                     src={foodData.strMealThumb}
@@ -81,20 +79,20 @@ function Recipe() {
                   />
                 </div>
                 <div className=" flex flex-col items-start">
-                  <h1 className="text-4xl font-bold tracking-wider text-nowrap text-[#202020] dark:text-yellow-400">
+                  <h1 className="text-4xl font-bold tracking-wider text-nowrap text-white dark:text-[var(--hoverBtnColor)]">
                     {foodData.strMeal}
                   </h1>
-                  <h3 className="text-xl font-medium text-[#202020] ml-1 dark:text-white">
+                  <h3 className="text-xl font-medium text-[var(--bgBtnColor)] ml-1 dark:text-white">
                     {foodData.strCategory}
                   </h3>
                   <div className="flex items-start flex-col gap-1 flex-wrap">
-                    <h4 className="text-xl font-semibold tracking-wider text-nowrap text-[#202020] mt-4 dark:text-yellow-400">
+                    <h4 className="text-xl font-semibold tracking-wider text-nowrap text-white mt-4 dark:text-[var(--hoverBtnColor)]">
                       Ingredient :
                     </h4>
                     {foodData.ingredients?.map((item, index) => (
                       <p
                         key={index}
-                        className="text-[#202020] dark:text-white ml-1"
+                        className="text-[var(--hoverBtnColor)] dark:text-white ml-1"
                       >
                         {item.ingredient} ({item.measure})
                       </p>
@@ -104,10 +102,10 @@ function Recipe() {
               </div>
 
               <div className="food-details w-full flex flex-col items-start">
-                <h4 className="text-xl font-semibold tracking-wider text-nowrap text-[#202020] mt-4 dark:text-yellow-400">
+                <h4 className="text-xl font-semibold tracking-wider text-nowrap text-[var(--hoverBtnColor)] mt-4">
                   Recipe :
                 </h4>
-                <p className="text-[#202020] ml-1 dark:text-white text-justify">
+                <p className="text-white ml-1 dark:text-white text-justify">
                   {foodData.strInstructions}
                 </p>
                 <Button

@@ -42,6 +42,7 @@ function UnitConverter() {
 
   const handleUnit = (e) => {
     e.preventDefault();
+    setInput("");
     if (input === "" || units.from === "" || units.to === "") {
       setError("Please enter value or select a parameter");
       setTimeout(() => setError(""), 3000);
@@ -72,11 +73,17 @@ function UnitConverter() {
                 unitType: item.toLowerCase(),
               }));
             }}
-            className={`w-[7rem] py-2 text-[#202020] dark:text-yellow-400 border-[1px] border-[#202020] dark:border-yellow-400 ${
+            className={`w-[7rem] py-2 text-[var(--textColor)] border border-[#202020] ${
               units.unitType === item.toLowerCase()
-                ? "bg-black text-white border-b-0 dark:text-yellow-400 font-semibold"
-                : "bg-zinc-200 dark:bg-transparent"
-            } transition duration-150 ease-in hover:bg-black hover:text-white dark:hover:text-white border-[#202020] dark:focus:border-yellow-400 focus:bg-black focus:text-white max-[530px]:w-[7.5rem] `}
+                ? "bg-[var(--hoverBtnColor)] dark:bg-[var(--hoverBtnColor)] text-white border-b-0 font-semibold"
+                : "bg-[var(--bgCardColor)] dark:bg-[var(--bgDarkCardColor)]"
+            } ${
+              item === "Length"
+                ? "rounded-tl-[var(--inputRadius)]"
+                : item === "Time"
+                ? "rounded-tr-[var(--inputRadius)]"
+                : ""
+            } transition duration-150 ease-in hover:bg-[var(--hoverBtnColor)] dark:hover:text-white border-[#202020] focus:bg-[var(--hoverBtnColor)] max-[530px]:w-[7.5rem] `}
           >
             {item}
           </button>
@@ -84,15 +91,15 @@ function UnitConverter() {
       </div>
       <form
         onSubmit={handleUnit}
-        className="flex flex-col gap-4 p-5 shadow-2xl bg-zinc-100 border-[1px] border-[#202020] dark:border-yellow-400 dark:bg-transparent"
+        className="flex flex-col gap-4 p-5 shadow-2xl bg-[var(--bgCardColor)] border border-[#202020] rounded-tr-[var(--boxRadius)] rounded-b-[var(--boxRadius)] dark:bg-[var(--bgDarkCardColor)]"
       >
-        <h1 className="text-3xl font-semibold text-[#202020] dark:text-yellow-400 max-[550px]:text-2xl">
+        <h1 className="text-3xl font-semibold text-[var(--textColor)] max-[550px]:text-2xl">
           UNIT CONVERTER
         </h1>
         <div className="flex items-center gap-4 max-[550px]:flex-col">
           <div className="w-full flex items-center gap-4">
             <label
-              className="text-lg text-nowrap font-medium text-[#202020] dark:text-white"
+              className="text-lg text-nowrap font-medium text-[var(--textColor)] dark:text-white"
               htmlFor="from"
             >
               From :
@@ -101,7 +108,7 @@ function UnitConverter() {
               onChange={(e) =>
                 setUnits((prev) => ({ ...prev, from: e.target.value }))
               }
-              className="w-full px-3 py-2 border-[1px] text-black border-[#202020] bg-zinc-200 rounded-[var(--inputRadius)] dark:bg-black dark:text-white dark:border-yellow-400 focus:outline-none cursor-pointer max-[550px]:w-full"
+              className="w-full px-3 py-2 border text-black border-[#202020] bg-[var(--bgColor)] rounded-[var(--inputRadius)] focus:outline-none cursor-pointer max-[550px]:w-full"
             >
               <option>Select a parameter</option>
               {unitParameter[units.unitType]?.map((prev) => (
@@ -113,7 +120,7 @@ function UnitConverter() {
           </div>
           <div className="w-full flex items-center gap-4">
             <label
-              className="text-lg text-nowrap font-medium text-[#202020] dark:text-white"
+              className="text-lg text-nowrap font-medium text-[var(--textColor)] dark:text-white"
               htmlFor="from"
             >
               To :
@@ -122,7 +129,7 @@ function UnitConverter() {
               onChange={(e) =>
                 setUnits((prev) => ({ ...prev, to: e.target.value }))
               }
-              className="w-full px-3 py-2 border-[1px] text-black border-[#202020] bg-zinc-200 rounded-[var(--inputRadius)] dark:bg-black dark:text-white dark:border-yellow-400 focus:outline-none cursor-pointer max-[550px]:w-full"
+              className="w-full px-3 py-2 border-[1px] text-black border-[#202020] bg-[var(--bgColor)] rounded-[var(--inputRadius)] focus:outline-none cursor-pointer max-[550px]:w-full"
             >
               <option>Select a parameter</option>
               {unitParameter[units.unitType]?.map((prev) => (
@@ -134,36 +141,35 @@ function UnitConverter() {
           </div>
         </div>
         <Input
-          className="bg-zinc-200"
           label="Value"
           type="number"
           placeholder="enter a value"
-          value={units.value}
+          value={input}
           onChange={(e) => setInput(e.target.value)}
         />
         <div className="flex items-center gap-4">
-          <p className="text-lg font-medium text-[#202020] dark:text-white">
+          <p className="text-lg font-medium text-[var(--textColor)] dark:text-white">
             Result :
           </p>
           {loading ? (
-            <span className="text-lg font-medium text-[#202020] border-b-[1px] border-b-zinc-600 dark:text-yellow-400 dark:border-yellow-400">
+            <span className="text-lg font-medium text-[var(--textColor)] border-b-[1px] border-b-zinc-600 dark:text-white">
               converting...
             </span>
           ) : units.result ? (
-            <p className="text-lg font-medium text-[#202020] border-b-[1px] border-b-zinc-600 dark:text-yellow-400 dark:border-yellow-400">
+            <p className="text-lg font-medium text-[var(--textColor)] border-b-[1px] border-b-zinc-600 dark:text-white">
               {units.result}
             </p>
           ) : (
-            <div className="w-20 pt-3 border-[1px] border-transparent border-b-[#202020] dark:border-b-yellow-400"></div>
+            <div className="w-20 pt-3 border-[1px] border-transparent border-b-[#202020]"></div>
           )}
         </div>
         <Button className="max-[550px]:text-base">{`CONVERT ${units.unitType.toUpperCase()}`}</Button>
+        {error ? (
+          <p className="py-2 text-xl font-semibold text-[var(--textColor)]">
+            {error}
+          </p>
+        ) : null}
       </form>
-      {error ? (
-        <p className="py-4 text-xl font-semibold text-[#202020] dark:text-yellow-400">
-          {error}
-        </p>
-      ) : null}
     </div>
   );
 }

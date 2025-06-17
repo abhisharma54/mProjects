@@ -35,6 +35,7 @@ function Header() {
     } else {
       dispatch(darkMode());
     }
+    setMenu((prev) => !prev);
   };
 
   useEffect(() => {
@@ -48,11 +49,11 @@ function Header() {
           <header
             className={
               menu
-                ? "flex flex-col items-center gap-10 bg-zinc-100 dark:bg-zinc-950 px-10 shadow-2xl py-2 rounded-full border-[1px] border-[#202020] dark:border-yellow-400 min-[550px]:flex-row max-[550px]:gap-0 max-[550px]:w-full max-[550px]:h-min max-[550px]:pb-10 max-[550px]:rounded-none max-[550px]:border-none max-[550px]:fixed max-[550px]:top-0"
-                : "flex items-center gap-10 bg-zinc-100 dark:bg-zinc-900 px-10 shadow-2xl py-2 rounded-full border-[1px] border-[#202020] dark:border-yellow-400 max-[550px]:hidden"
+                ? "flex flex-col items-center gap-10 bg-zinc-100 dark:bg-zinc-950 px-10 shadow-2xl py-2 rounded-full border border-[#202020] dark:border-[var(--bgDarkCardColor)] min-[550px]:flex-row max-[550px]:gap-0 max-[550px]:w-full max-[550px]:h-min max-[550px]:pb-10 max-[550px]:rounded-none max-[550px]:border-none max-[550px]:fixed max-[550px]:top-0"
+                : "flex items-center gap-10 bg-zinc-100 dark:bg-zinc-900 px-10 shadow-2xl py-2 rounded-full border-[1px] border-[#202020] dark:border-[var(--bgDarkCardColor)] max-[550px]:hidden"
             }
           >
-            <h1 className="text-2xl font-bold text-[#202020] dark:text-yellow-400 mb-1 max-[550px]:pt-10 max-[550px]:text-3xl">
+            <h1 className="text-2xl font-bold text-[var(--logoColor)] dark:text-[var(--logoDarkColor)] mb-1 max-[550px]:pt-10 max-[550px]:text-3xl">
               mProjects
             </h1>
             <ul className="flex gap-4 max-[550px]:flex-col max-[550px]:gap-8 max-[550px]:py-10">
@@ -64,9 +65,9 @@ function Header() {
                     className={({ isActive }) =>
                       `${
                         isActive
-                          ? "text-orange-500 font-semibold dark:text-yellow-400 "
+                          ? "text-[var(--bgBtnColor)] font-semibold dark:text-[var(--bgDarkCardColor)]"
                           : "text-[#202020] dark:text-white"
-                      } outline-none transition duration-150 ease-in max-[550px]:text-xl hover:text-orange-500 hover:border-b-orange-500 dark:hover:text-yellow-400 hover:border-b-[1px] dark:hover:border-b-yellow-400`
+                      } outline-none transition duration-150 ease-in max-[550px]:text-xl hover:text-[var(--bgBtnColor)] hover:border-b-[var(--bgCardColor)] hover:font-semibold dark:hover:text-[var(--bgDarkCardColor)] hover:border-b dark:hover:border-b-[var(--bgDarkCardColor)]`
                     }
                   >
                     {link.name}
@@ -102,10 +103,10 @@ function Header() {
             ) : (
               <>
                 <img
-                  src={theme === "light" ? menuDarkIcon : menuLightIcon}
+                  src={theme === "light" ? menuLightIcon : menuDarkIcon}
                   alt="menu-icon"
                 />
-                <p className="text-xl text-[#202020] font-semibold dark:text-yellow-400">
+                <p className="text-xl text-[var(--bgBtnColor)] dark:text-[var(--textColor)] font-semibold">
                   Menu
                 </p>
               </>
@@ -114,7 +115,7 @@ function Header() {
         </div>
       </div>
       <div className="h-24 max-[550px]:h-16"></div>
-      <main onClick={() => setMenu(false)}>
+      <main className="pb-20" onClick={() => setMenu(false)}>
         <Outlet />
       </main>
     </div>

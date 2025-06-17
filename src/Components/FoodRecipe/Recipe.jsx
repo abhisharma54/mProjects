@@ -12,9 +12,9 @@ function Recipe() {
 
   const handleFoodRecipe = useCallback(async () => {
     let url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${foodId}`;
+    setLoading(true);
+    setError("");
     try {
-      setLoading(true);
-      setError("");
       const res = await fetch(url);
       const data = await res.json();
       const food = data.meals[0];
@@ -48,8 +48,6 @@ function Recipe() {
     }
   }, [foodId]);
 
-  console.log("foodData:", foodData);
-
   useEffect(() => {
     handleFoodRecipe();
   }, [handleFoodRecipe]);
@@ -65,7 +63,7 @@ function Recipe() {
           {error}
         </p>
       ) : (
-        <div className="flex min-h-[80vh] max-w-[800px] bg-zinc-100 dark:bg-[#303030] border border-[#303030] dark:border-yellow-400">
+        <div className="flex min-h-[80vh] max-w-[800px] bg-zinc-100 rounded-[var(--boxRadius)] dark:bg-[#303030] border border-[#303030] dark:border-yellow-400">
           <div className="flex flex-col gap-2 py-4">
             <div className="flex gap-2 justify-center text-3xl font-bold tracking-wider">
               <span className="text-[#555555] dark:text-yellow-400">
@@ -75,7 +73,7 @@ function Recipe() {
             </div>
             <div className="flex flex-col gap-5 px-6 py-4 max-[768px]:flex-col max-[550px]:px-3">
               <div className="flex gap-4 max-[768px]:flex-col">
-                <div className="food-img w-[480px] h-[300px] bg-zinc-300 rounded-md dark:bg-[#242424] overflow-hidden max-[768px]:w-full max-[768px]:h-[400px] max-[550px]:h-[300px]">
+                <div className="food-img w-[480px] h-[300px] bg-zinc-300  rounded-[var(--boxRadius)] dark:bg-[#242424] overflow-hidden max-[768px]:w-full max-[768px]:h-[400px] max-[550px]:h-[300px]">
                   <img
                     className="w-full h-full object-cover"
                     src={foodData.strMealThumb}

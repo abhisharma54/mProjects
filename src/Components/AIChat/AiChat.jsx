@@ -15,18 +15,17 @@ function AiChat() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState("");
 
-  const themeData = useSelector((state) => state.mode);
+  const theme = useSelector((state) => state.mode);
   const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
   const handleAiChat = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setError("");
+    setPrompt("");
     try {
-      setLoading(true);
-      setError("");
-      setPrompt("");
       const result = await model.generateContent(prompt);
-      console.log(result)
       const res = result.response.text().replace(/\*/g, "").replace("##", "");
       setData((prev) => [...prev, { question: prompt, message: res }]);
     } catch (error) {
@@ -45,28 +44,32 @@ function AiChat() {
               How can I help you?
             </p>
           ) : (
-              data.map((item, index) => (
-                <div key={index} className="flex flex-col gap-3">
-                  <p className="text-black font-semibold bg-zinc-200 self-end px-3 py-2 rounded-md text-right dark:text-white dark:bg-[#303030]">{item.question}</p>
-                  <p
-                    className="text-black bg-zinc-100 self-start px-3 py-2 rounded-md text-justify dark:text-white dark:bg-zinc-700"
-                  >
-                    {item.message}
-                  </p>
-                </div>
-              ))
+            data.map((item, index) => (
+              <div key={index} className="flex flex-col gap-3">
+                <p className="text-black font-semibold bg-zinc-200 self-end px-3 py-2 rounded-[var(--inputRadius)] text-right dark:text-white dark:bg-[#303030]">
+                  {item.question}
+                </p>
+                <p className="text-black bg-zinc-100 self-start px-3 py-2 rounded-[var(--inputRadius)] text-justify dark:text-white dark:bg-zinc-700">
+                  {item.message}
+                </p>
+              </div>
+            ))
           )}
           {loading && (
             <div className="flex gap-2">
               <img
                 className="w-[20px]"
-                src={themeData === "light" ? listAiLight : listAiDark}
+                src={theme === "light" ? listAiLight : listAiDark}
                 alt="listAi-icon"
               />
               <p className="text-[#202020] dark:text-yellow-400">wait...</p>
             </div>
           )}
-          {error && <p className="text-black bg-zinc-100 p-3 rounded-md dark:text-white dark:bg-zinc-700 overflow-auto">{error}</p>}
+          {error && (
+            <p className="text-black bg-zinc-100 p-3 rounded-md dark:text-white dark:bg-zinc-700 overflow-auto">
+              {error}
+            </p>
+          )}
           <div className="h-[50px]"></div>
         </div>
         <form
@@ -81,7 +84,7 @@ function AiChat() {
           />
           <button type="submit" className="w-[40px] shadow-2xl">
             <img
-              src={themeData === "light" ? arrowLightIcon : arrowDarkIcon}
+              src={theme === "light" ? arrowLightIcon : arrowDarkIcon}
               alt="Send"
             />
           </button>

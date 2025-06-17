@@ -11,7 +11,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 function Header() {
   const [menu, setMenu] = useState(false);
-  const themeData = useSelector((state) => state.mode);
+  const theme = useSelector((state) => state.mode);
   const dispatch = useDispatch();
 
   const navItem = [
@@ -30,24 +30,20 @@ function Header() {
   ];
 
   const handleThemeMode = () => {
-    if (themeData === "dark") {
-      document.querySelector("html").classList.remove("dark");
-      document.querySelector("html").classList.add('light');
+    if (theme === "dark") {
       dispatch(lightMode());
     } else {
-      document.querySelector("html").classList.remove("light");
-      document.querySelector("html").classList.add('dark');
       dispatch(darkMode());
     }
   };
 
   useEffect(() => {
-    document.querySelector('html').classList.add(themeData)
-  }, [])
+    document.querySelector("html").className = theme;
+  }, [theme]);
 
   return (
-    <>
-      <div className="w-full">
+    <div className="w-full h-full">
+      <div>
         <div className="flex justify-center absolute top-10 left-0 right-0 z-20">
           <header
             className={
@@ -64,13 +60,13 @@ function Header() {
                 <li key={index}>
                   <NavLink
                     to={link.path}
-                    onClick={() => setMenu(prev => !prev)}
+                    onClick={() => setMenu((prev) => !prev)}
                     className={({ isActive }) =>
                       `${
                         isActive
                           ? "text-orange-500 font-semibold dark:text-yellow-400 "
                           : "text-[#202020] dark:text-white"
-                      } transition duration-150 ease-in max-[550px]:text-xl hover:text-orange-500 hover:border-b-orange-500 dark:hover:text-yellow-400 hover:border-b-[1px] dark:hover:border-b-yellow-400`
+                      } outline-none transition duration-150 ease-in max-[550px]:text-xl hover:text-orange-500 hover:border-b-orange-500 dark:hover:text-yellow-400 hover:border-b-[1px] dark:hover:border-b-yellow-400`
                     }
                   >
                     {link.name}
@@ -84,10 +80,14 @@ function Header() {
               className="w-[30px] flex items-center justify-center gap-2 cursor-pointer transition duration-150 ease-in hover:scale-105"
             >
               <img
-                src={themeData === "light" ? darkModeIcon : lightModeIcon}
+                src={theme === "light" ? darkModeIcon : lightModeIcon}
                 alt="theme-mode-icon"
               />
-              {menu && <p className="hidden text-[#202020] dark:text-yellow-400 text-nowrap font-medium hover:underline max-[550px]:block max-[550px]:text-xl">{themeData === 'light' ? 'Dark Mode' : 'Light Mode'}</p>}
+              {menu && (
+                <p className="hidden text-[#202020] dark:text-yellow-400 text-nowrap font-medium hover:underline max-[550px]:block max-[550px]:text-xl">
+                  {theme === "light" ? "Dark Mode" : "Light Mode"}
+                </p>
+              )}
             </button>
           </header>
           <button
@@ -95,17 +95,21 @@ function Header() {
             title="menu"
             className="w-[30px] hidden absolute top-0 right-20 cursor-pointer transition duration-150 ease-in focus:outline-none hover:scale-105 max-[550px]:flex max-[550px]:items-center max-[550px]:gap-1"
           >
-            {menu ? <p className="text-[1.5rem] cursor-pointer fixed mt-10 ml-10 transition duration-150 ease-in-out hover:[text-shadow:_0_0_20px_rgb(255_0_0)] dark:text-white">❌</p> : (
+            {menu ? (
+              <p className="text-[1.5rem] cursor-pointer fixed mt-10 ml-10 transition duration-150 ease-in-out hover:[text-shadow:_0_0_20px_rgb(255_0_0)] dark:text-white">
+                ❌
+              </p>
+            ) : (
               <>
-              <img
-              src={themeData === "light" ? menuDarkIcon : menuLightIcon}
-              alt="menu-icon"
-            />
-            <p className="text-xl text-[#202020] font-semibold dark:text-yellow-400">
-              Menu
-            </p>
+                <img
+                  src={theme === "light" ? menuDarkIcon : menuLightIcon}
+                  alt="menu-icon"
+                />
+                <p className="text-xl text-[#202020] font-semibold dark:text-yellow-400">
+                  Menu
+                </p>
               </>
-          )}
+            )}
           </button>
         </div>
       </div>
@@ -113,7 +117,7 @@ function Header() {
       <main onClick={() => setMenu(false)}>
         <Outlet />
       </main>
-    </>
+    </div>
   );
 }
 

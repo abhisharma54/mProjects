@@ -30,8 +30,6 @@ function FoodItem() {
     handleFoodSearch("");
   }, []);
 
-  console.log("food data :", foodData);
-
   return (
     <div className="w-full flex flex-col">
       <div className="flex gap-2 py-5">

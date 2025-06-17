@@ -6,10 +6,10 @@ function ItemCard({ imgSrc, imgAlt, itemName, itemCategory, itemId }) {
   const navigate = useNavigate();
 
   return (
-    <div className="group relative w-[340px] h-[450px] border border-[#202020] bg-zinc-100 dark:bg-[#262626] dark:border-yellow-400 hover:cursor-pointer overflow-hidden max-[780px]:w-[250px] max-[780px]:h-[350px] max-[550px]:w-[350px]">
+    <div className="group relative w-[340px] h-[450px] border border-[#202020] bg-zinc-100 rounded-[var(--boxRadius)] dark:bg-[#262626] dark:border-yellow-400 hover:cursor-pointer overflow-hidden max-[780px]:w-[250px] max-[780px]:h-[350px] max-[550px]:w-[350px]">
       <div className="p-3 max-[550px]:w-full">
         <img
-          className="w-full h-[370px] object-cover rounded-md bg-zinc-300 dark:bg-[#303030] max-[780px]:h-[270px]"
+          className="w-full h-[370px] object-cover rounded-[var(--boxRadius)] bg-zinc-300 dark:bg-[#303030] max-[780px]:h-[270px]"
           src={imgSrc}
           alt={imgAlt}
           loading="lazy"

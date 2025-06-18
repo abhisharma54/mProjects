@@ -33,7 +33,7 @@ function About() {
   ];
 
   return (
-    <div className="w-full bg-[var(--bgCardColor)] p-5 pb-20 dark:bg-[var(--bgDarkCardColor)]">
+    <div className="w-full bg-[var(--bgCardColor)] p-5 pb-20 dark:bg-[var(--bgDarkCardColor)] rounded-[var(--boxRadius)]">
       <h1 className="text-3xl font-bold text-white">mProjects</h1>
       <p className="text-lg text-justify mt-2 font-medium text-[var(--textColor)]">
         <span className="text-[var(--logoColor)] dark:text-[var(--hoverBtnColor)] font-bold">

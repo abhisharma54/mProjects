@@ -31,7 +31,7 @@ function Contact() {
         {links.map((link) => (
           <Link
             key={link.name}
-            className="w-full flex gap-4 items-center p-3 border bg-[var(--bgCardColor)] rounded-[var(--boxRadius)] transition duration-150 ease-in hover:bg-[var(--bgBtnColor)] hover:border-[#202020] hover:shadow-lg dark:border-zinc-700 dark:bg-[var(--bgDarkCardColor)]"
+            className="w-full flex gap-4 items-center p-3 border border-transparent bg-[var(--bgCardColor)] rounded-[var(--boxRadius)] transition duration-150 ease-in hover:bg-[var(--bgBtnColor)] hover:border-[#202020] hover:shadow-lg dark:hover:border-white dark:bg-[var(--bgDarkCardColor)] dark:hover:bg-[var(--logoColor)]"
             target="_blank"
             to={link.path}
           >
@@ -41,7 +41,7 @@ function Contact() {
               alt={link.imgAlt}
               loading="lazy"
             />
-            <h1 className="text-xl font-semibold text-white">LinkedIn</h1>
+            <h1 className="text-xl font-semibold text-white">{link.name}</h1>
           </Link>
         ))}
       </div>
